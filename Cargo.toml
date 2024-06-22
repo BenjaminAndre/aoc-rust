@@ -1,3 +1,4 @@
+workspace = { members = ["puzzle_2015_01"] }
 [package]
 name = "aoc-rust"
 version = "0.1.0"
