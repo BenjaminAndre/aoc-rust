@@ -5,7 +5,9 @@ fn main() {
 }
 
 fn part1(input:&str) -> String{
-    "0".to_string()
+    let up = input.chars().filter(|c| *c == '(').count();
+    let down = input.chars().filter(|c| *c == ')').count();
+    (up-down).to_string()
 }
 
 
@@ -18,5 +20,21 @@ mod tests {
     fn test_1() {
         let result = part1("(())");
         assert_eq!(result, "0");
+        let result = part1("()()");
+        assert_eq!(result, "0");
+        let result = part1("(((");
+        assert_eq!(result, "3");
+        let result = part1("(()(()(");
+        assert_eq!(result, "3");
+        let result = part1("))(((((");
+        assert_eq!(result, "3");
+        let result = part1("())");
+        assert_eq!(result, "-1");
+        let result = part1("))(");
+        assert_eq!(result, "-1");
+        let result = part1(")))");
+        assert_eq!(result, "-3");
+        let result = part1(")())())");
+        assert_eq!(result, "-3");
     }
 }
