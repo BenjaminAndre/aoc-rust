@@ -25,7 +25,7 @@ impl IsNice for Checklist {
 
 fn part2(input:&str) -> String{
     let mut nice = 0;
-    // It works because none of ,;: are in the input string. Not quite idiomatic, but it works
+    // It works because none of ,;: are in the input string. Not quite idiomatic, but it works ¯\_(ツ)_/¯ 
     for line in input.lines().map(|l| format!("{},;:", l)) {
         let mut checklist = Checklist{..Default::default()};
 
