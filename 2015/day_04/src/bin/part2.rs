@@ -3,8 +3,7 @@ use crypto::digest::Digest;
 
 
 fn main() {
-    let input = "ckczppom";
-    let output = part1(input);
+    let output = part1(include_str!("../../input1.txt").trim());
     dbg!(output);
 }
 
@@ -17,8 +16,6 @@ fn part1(input:&str) -> String{
         let inp = inp.as_bytes();
         md5.input(&inp);
         let res = md5.result_str();
-        if *x > 609040 && *x < 609050 {
-        }
         res.starts_with(&desired_prefix)
     }).nth(0).unwrap();
     result.to_string()

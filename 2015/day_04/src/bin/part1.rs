@@ -3,8 +3,7 @@ use crypto::digest::Digest;
 
 
 fn main() {
-    let input = "ckczppom";
-    let output = part1(input);
+    let output = part1(include_str!("../../input1.txt").trim());
     dbg!(output);
 }
 
