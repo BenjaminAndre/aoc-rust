@@ -50,8 +50,8 @@ fn parse(input:&str) -> Vec<Order> {
     orders
 }
 
-fn process<F>(p1 : Point, p2: Point, lights : &mut[usize; 1000000], action : F)
-where F : Fn(usize) -> usize 
+fn process<F>(p1 : Point, p2: Point, lights : &mut[u8; 1000000], action : F)
+where F : Fn(u8) -> u8
 {
     for y in p1.1..=p2.1 {
         for x in p1.0..=p2.0 {
@@ -63,19 +63,16 @@ where F : Fn(usize) -> usize
 
 fn part1(input:&str) -> String{
     let orders = parse(input);
-    let mut lights = [0; 1000000];
+    let mut lights : [u8; 1000000] = [0; 1000000];
 
-    for order in orders.clone().iter() {
-
+    for order in orders.iter() {
         match order {
             Order::TurnOn(p1,p2) => {process(*p1,*p2, &mut lights, |i| i+1)},
             Order::TurnOff(p1,p2) => {process(*p1,*p2, &mut lights, |i| i.checked_sub(1).unwrap_or(0))},
             Order::Toggle(p1,p2) => {process(*p1,*p2, &mut lights, |i| i+2)},
         }
-
     }
-
-    lights.iter().sum::<usize>().to_string()
+    lights.iter().fold(0, |acc, x| acc + usize::from(*x)).to_string()
 }
 
 
@@ -88,6 +85,6 @@ mod tests {
     fn test_1() {
         let command = "turn on 0,0 through 999,999\ntoggle 0,0 through 999,0\nturn off 499,499 through 500,500";
         let result = part1(command);
-        assert_eq!(result, "1002996");
+        assert_eq!(result, "1001996");
     }
 }
